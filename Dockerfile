@@ -14,20 +14,23 @@
 FROM openzipkin/jre-full:1.8.0_72
 MAINTAINER OpenZipkin "http://zipkin.io/"
 
+ARG STORAGE_TYPE
 ENV ZIPKIN_REPO https://jcenter.bintray.com
-ENV ZIPKIN_VERSION 1.1.4
+ENV DEPENDENCIES_VERSION 1.0.0
 
 # Use to set heap, trust store or other system properties.
 ENV JAVA_OPTS -Djava.security.egd=file:/dev/./urandom
 
-# Add environment settings for supported storage types
-COPY zipkin/ /zipkin/
-WORKDIR /zipkin
+WORKDIR /zipkin-dependencies
 
-RUN curl -SL $ZIPKIN_REPO/io/zipkin/java/zipkin-server/$ZIPKIN_VERSION/zipkin-server-$ZIPKIN_VERSION-exec.jar > zipkin-server.jar && \
-    unzip zipkin-server.jar && \
-    rm zipkin-server.jar
+# Enable cron by running with entrypoint: crond -f -d 8
+# * Bundling this configuration is a convenience, noting not everyone will use cron
+# * Cron invokes this job hourly to process today's spans and daily to process yesterday's
+COPY periodic/ /etc/periodic/
 
-EXPOSE 9410 9411
+# Adds coreutils to allow date formatting of 'yesterday'
+RUN apk add --no-cache coreutils && \
+    curl -SL $ZIPKIN_REPO/io/zipkin/dependencies/zipkin-dependencies/$DEPENDENCIES_VERSION/zipkin-dependencies-$DEPENDENCIES_VERSION.jar > zipkin-dependencies.jar
 
-CMD test -n "$STORAGE_TYPE" && source .${STORAGE_TYPE}_profile; java ${JAVA_OPTS} -cp '.:lib/*' zipkin.server.ZipkinServer
+# Default entrypoint is to run the dependencies job on-demand, processing today's spans.
+CMD java ${JAVA_OPTS} -jar zipkin-dependencies.jar

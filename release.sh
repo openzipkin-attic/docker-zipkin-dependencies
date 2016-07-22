@@ -32,7 +32,7 @@ started_at=$($date +%s)
 ## Read input and env
 version="$1"
 # Service images
-image="${IMAGE_NAME:-zipkin}"
+image="${IMAGE_NAME:-zipkin-dependencies}"
 # Remotes, auth
 docker_organization="${DOCKER_ORGANIZATION:-openzipkin}"
 quayio_oauth2_token="$QUAYIO_OAUTH2_TOKEN"

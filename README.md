@@ -1,26 +1,36 @@
-[![Build Status](https://travis-ci.org/openzipkin/docker-zipkin-java.svg)](https://travis-ci.org/openzipkin/docker-zipkin-java)
-[![zipkin](https://quay.io/repository/openzipkin/zipkin/status "zipkin")](https://quay.io/repository/openzipkin/zipkin)
+[![Build Status](https://travis-ci.org/openzipkin/docker-zipkin-dependencies.svg)](https://travis-ci.org/openzipkin/docker-zipkin-dependencies)
+[![zipkin-dependencies](https://quay.io/repository/openzipkin/zipkin-dependencies/status "zipkin-dependencies")](https://quay.io/repository/openzipkin/zipkin-dependencies)
 
-# docker-zipkin
+# docker-zipkin-dependencies
 
 This repository contains the Docker build definition and release process for
-[openzipkin/zipkin](https://github.com/openzipkin/zipkin).
+[openzipkin/zipkin-dependencies](https://github.com/openzipkin/zipkin-dependencies).
+
+The zipkin dependencies job pre-aggregates data such that `http://your_host:9411/dependency` shows links
+between services.
 
 Automatically built images are available on Quay.io
-as [quay.io/openzipkin/zipkin](https://quay.io/repository/openzipkin/zipkin), and are mirrored to
-Docker Hub as [openzipkin/zipkin](https://hub.docker.com/r/openzipkin/zipkin/).
+as [quay.io/openzipkin/zipkin-dependencies](https://quay.io/repository/openzipkin/zipkin-dependencies), and are mirrored to
+Docker Hub as [openzipkin/zipkin-dependencies](https://hub.docker.com/r/openzipkin/zipkin-dependencies/).
 
 ## Running
 
-Use [docker-compose](https://docs.docker.com/compose/) by doing
-`docker-compose up`.
+### On-demand
+To process all spans since midnight UTC, run the default entrypoint of this image pointed at your storage backend.
 
-See the ui at (docker ip):8080
+```bash
+$ docker run --env STORAGE_TYPE=cassandra --env CASSANDRA_CONTACT_POINTS=host1,host2 openzipkin/zipkin-dependencies
+```
 
-In the ui - click zipkin-server, then click "Find Traces".
+### Cron
+To process spans since midnight every hour, and all spans each day, change the entrypoint to cron.
+
+```bash
+$ docker run ... openzipkin/zipkin-dependencies sh -c 'crond -f'
+```
 
 ## Configuration
-Configuration is via environment variables, defined by [zipkin-server](https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md).
+Configuration is via environment variables, defined by [zipkin-dependencies](https://github.com/openzipkin/zipkin-dependencies/blob/master/README.md).
 
 In docker, the following can also be set:
 
