@@ -16,7 +16,7 @@ MAINTAINER OpenZipkin "http://zipkin.io/"
 
 ARG STORAGE_TYPE
 ENV ZIPKIN_REPO https://jcenter.bintray.com
-ENV DEPENDENCIES_VERSION 1.7.1
+ENV DEPENDENCIES_VERSION 1.7.2
 
 # Use to set heap, trust store or other system properties.
 ENV JAVA_OPTS -Djava.security.egd=file:/dev/./urandom
