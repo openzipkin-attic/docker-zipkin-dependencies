@@ -25,7 +25,7 @@ install:
 
 before_script:
   # Log in to Docker Hub, needed to mirror images built on quay.io
-  - docker login -e abesto0+docker-zipkin-deployer@gmail.com -u dockerzipkindeployer -p "$DOCKERHUB_PASSWORD"
+  - docker login -u dockerzipkindeployer -p "$DOCKERHUB_PASSWORD"
 
 script:
  # Also known as doit.sh
