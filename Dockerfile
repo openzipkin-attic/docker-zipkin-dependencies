@@ -1,5 +1,5 @@
 #
-# Copyright 2015-2016 The OpenZipkin Authors
+# Copyright 2015-2018 The OpenZipkin Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License. You may obtain a copy of the License at
@@ -11,12 +11,12 @@
 # or implied. See the License for the specific language governing permissions and limitations under
 # the License.
 #
-FROM openzipkin/jre-full:1.8.0_144
+FROM openzipkin/jre-full:1.8.0_152
 MAINTAINER OpenZipkin "http://zipkin.io/"
 
 ARG STORAGE_TYPE
 ENV ZIPKIN_REPO https://jcenter.bintray.com
-ENV DEPENDENCIES_VERSION 1.11.4
+ENV DEPENDENCIES_VERSION 1.12.0
 
 # Use to set heap, trust store or other system properties.
 ENV JAVA_OPTS -Djava.security.egd=file:/dev/./urandom
