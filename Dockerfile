@@ -11,12 +11,12 @@
 # or implied. See the License for the specific language governing permissions and limitations under
 # the License.
 #
-FROM openzipkin/jre-full:1.8.0_191
+FROM openzipkin/jre-full:1.8.0_201
 MAINTAINER OpenZipkin "http://zipkin.io/"
 
 ARG STORAGE_TYPE
 ENV ZIPKIN_REPO https://jcenter.bintray.com
-ENV DEPENDENCIES_VERSION 2.0.8
+ENV DEPENDENCIES_VERSION 2.1.0
 
 # Use to set heap, trust store or other system properties.
 ENV JAVA_OPTS -Djava.security.egd=file:/dev/./urandom
