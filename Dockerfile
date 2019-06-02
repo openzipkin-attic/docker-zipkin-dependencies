@@ -15,7 +15,7 @@ FROM openzipkin/jre-full:1.8.0_201
 MAINTAINER OpenZipkin "http://zipkin.io/"
 
 ARG STORAGE_TYPE
-ENV ZIPKIN_REPO https://repository.apache.org/content/repositories/releases/
+ENV ZIPKIN_REPO https://repo1.maven.org/maven2
 ENV DEPENDENCIES_VERSION 2.2.0
 
 # Use to set heap, trust store or other system properties.
