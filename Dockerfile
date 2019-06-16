@@ -15,8 +15,8 @@ FROM openzipkin/jre-full:1.8.0_201
 MAINTAINER OpenZipkin "http://zipkin.io/"
 
 ARG STORAGE_TYPE
-ENV ZIPKIN_REPO https://repo1.maven.org/maven2
-ENV DEPENDENCIES_VERSION 2.2.0
+ENV ZIPKIN_REPO https://jcenter.bintray.com
+ENV DEPENDENCIES_VERSION 2.3.0
 
 # Use to set heap, trust store or other system properties.
 ENV JAVA_OPTS -Djava.security.egd=file:/dev/./urandom
@@ -30,7 +30,7 @@ COPY periodic/ /etc/periodic/
 
 # Adds coreutils to allow date formatting of 'yesterday'
 RUN apk add --no-cache coreutils && \
-    curl -SL $ZIPKIN_REPO/org/apache/zipkin/dependencies/zipkin-dependencies/$DEPENDENCIES_VERSION/zipkin-dependencies-$DEPENDENCIES_VERSION.jar > zipkin-dependencies.jar
+    curl -sSL $ZIPKIN_REPO/io/zipkin/dependencies/zipkin-dependencies/$DEPENDENCIES_VERSION/zipkin-dependencies-$DEPENDENCIES_VERSION.jar > zipkin-dependencies.jar
 
 # Default entrypoint is to run the dependencies job on-demand, processing today's spans.
 CMD java ${JAVA_OPTS} -jar zipkin-dependencies.jar
