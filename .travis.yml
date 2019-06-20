@@ -31,6 +31,14 @@ script:
  # Also known as doit.sh
  - ./release.sh $TRAVIS_TAG
 
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/ead3c37d57527214e9f2
+      - https://webhooks.gitter.im/e/e57478303f87ecd7bffc
+    on_success: change
+    on_failure: always
+
 env:
   global:
     # The release process syncs minor and major version tags to the newly built subminor version tag
@@ -38,12 +46,3 @@ env:
     - secure: "v9DuzsUNqYPGdRVd5c4sTckKwtbTpcJ5CqviifUw+jbBWmbUHKoXsACn43fh5w9BEUMQ1SsFl88Idw7r+HTffeTeDoTDEjaVRZK0Ud5HRi1WwSAnnSsy2OlyJqPKVqTF8OEjqquIL+K3cXhVKr+rKsrlsjFA/58uzS7OyM+VG1oWfFK5WSUkoDpfn42zWhnshBvSv42GkSdXzvARWyQovkgS8kJVl2HicXk3Jhw4M2I+rQDrgOYywxmQQUKKXGMRqjxe+S38qLuOYWBU5Me+U+OqepYnXCXct3UAAe33ZYaxTqyFlcerKls4hzS6aJ1HFIQtu0OlDc2smY2C8b6G0lhUVWLe6Lg4EZ9czvPLM+AMC4HsgKWCBARXDjXqVNao1EMgqHP84C1SgXUYlmlfor7RrfiUf/5h1HMqe6/OEHoskbhA7W8R0iDi5XyOpLSKrLIflA+A03QHyuvFMmCV8dl6GbybQ6X153zmLuQip7nnZZCmtKnEQ0mbubpOG5DIcnPPBjf4AVUL7lsvBvfQ5Wa09kXFBltRQE21/l3UQS9zhBDqrBoU87J9g2/8srBWUXzFppMVRv2QsNN7UiCA9w+YWGQSDT/kiJOMFSx8GrotYHayFNwpB7+MBotMKsUzFswYuepwTRF2VQly4uSFbbq2YWlVzg+bw2hYvfUUN6E="
     # The release process pushes images to Docker Hub, using these credentials
     - secure: "XgeUk0zBMKkm1dFl5JiHkMWBMXdr7PWsDGRfmhsyhj6mOlgBAFs2ve1fIyqY1YboyOy4hO/ljr+zchCgMt3OW9GMeCmmMip0bV5Xot4LrmkQX/LWes8LKiDqlikISM9pAdPmzVYqJxt/KhfglBZFMBTfNrTmJhtbLBgSocvp/HDbG1INiDoeCzaEw5H6zwAIZK2vz1T6fAgQ3kyDg0Zv5lNP7ylPXO0T5qwF/7wzq6dZmkwONQHyHLm/3kaD/AI2KCclqWf7GBaitfkb03N40ZcehGo28BVTgfnOgM9GYtPKRwb6spD08R1JNwsXCZqa3SAiJKN5iOXp9BLAymlAHRkRtkHLkjspmm9AtX72RqPQ7dRGVqMzH9xIIukUNAdvukho8sie/fM2JU6oncGhsC4W47Pxx93cqpUXknbWCDxvS2XiYxo+cYHbfsTWn5pgrmcG6mXHICF5JHFML3lqN7LTXXIkG3g/oJhhmo9DgJZ5yDq0Iyfpsd5NWbvfsme1Q/gppkmNbJOHd13oodt2iBKl7t69YkYaHHTvJa8houm6e4wGjN5S1PTj6eRAYK4mc4xxl3lYpZPPaP6aQHVVfJTBd6ka6tIXFxPHG2nQu5F/b/IgnuOqkAFh21CjCtWLqSJ4HmK3kXVllhYS6qqNCBPfZuStymuqJRD6qYKdfr0="
-
-notifications:
-  webhooks:
-    urls:
-      - https://webhooks.gitter.im/e/637e968b45032d16ee26
-    on_success: change
-    on_failure: always
-    on_start: false
-
