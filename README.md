@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/openzipkin/docker-zipkin-dependencies.svg)](https://travis-ci.org/openzipkin/docker-zipkin-dependencies)
-[![zipkin-dependencies](https://quay.io/repository/openzipkin/zipkin-dependencies/status "zipkin-dependencies")](https://quay.io/repository/openzipkin/zipkin-dependencies)
+## Archived
+
+This repository is archived as it has been folded into https://github.com/openzipkin/zipkin-dependencies/tree/master/docker
 
 # docker-zipkin-dependencies
 
